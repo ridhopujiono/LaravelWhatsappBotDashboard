@@ -2,14 +2,14 @@
 <html lang="en">
 
 <head>
-    <title>Portal - Bootstrap 5 Admin Dashboard Template For Developers</title>
+    <title>Ahsana - {{$title}}</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
+    <meta name="description" content="Ahsana - {{$title}}">
     <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
     <link rel="shortcut icon" href="favicon.ico">
 
@@ -18,10 +18,16 @@
 
     <!-- App CSS -->
     <link id="theme-style" rel="stylesheet" href="{{asset('src/assets/css/portal.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body class="app">
+    <style>
+        .datatable-wrapper.no-footer .datatable-container {
+            border-bottom: unset;
+        }
+    </style>
     <header class="app-header fixed-top">
         <div class="app-header-inner">
             <div class="container-fluid py-2">
@@ -204,6 +210,8 @@
 
     <!-- Page Specific JS -->
     <script src="{{asset('src/assets/js/app.js')}}"></script>
+    @stack('datatables-script')
+
 
 </body>
 

@@ -8,14 +8,14 @@
     <div class="row g-4 mb-4">
         <div class="col-md-12">
             <div>
-                @include('admin.template.create_button', ['url' => 'location/create', 'text'=> 'Tambah Lokasi'])
+                @include('admin.template.create_button', ['url' => 'house_type/create', 'text'=> 'Tambah '.$title])
             </div>
             @include('admin.template.alert')
             <div class="app-card app-card-chart h-100 shadow-sm">
                 <div class="app-card-header p-3">
                     <div class="row justify-content-between align-items-center">
                         <div class="col-auto">
-                            <h4 class="app-card-title">List Lokasi</h4>
+                            <h4 class="app-card-title">List {{$title}}</h4>
                         </div><!--//col-->
                     </div><!--//row-->
                 </div><!--//app-card-header-->
@@ -24,7 +24,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Lokasi</th>
+                                <th>Nama Tipe Rumah</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -32,13 +32,17 @@
                             @foreach($data as $d)
                             <tr>
                                 <td>{{$number++}}</td>
-                                <td>{{$d->location_name}}</td>
+                                <td>{{$d->house_type_name}}</td>
                                 <td>
-                                    <form action="{{ url('location/'.$d->id) }}" method="POST" id="delete-form">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="badge bg-danger" style="border: unset" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">hapus</button>
-                                    </form>
+                                    <div class="d-flex gap-2">
+                                        <a href="{{url('house_type/'.$d->id)}}" class="badge bg-warning" style="border: unset">detail</a>
+                                        <form action="{{ url('house_type/'.$d->id) }}" method="POST" id="delete-form">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="badge bg-danger" style="border: unset" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">hapus</button>
+                                        </form>
+
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach

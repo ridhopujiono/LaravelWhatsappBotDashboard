@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\HouseFloorController;
+use App\Http\Controllers\HouseTypeController;
+use App\Http\Controllers\LocationPointController;
+use App\Http\Controllers\MasterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.location_points.index');
-});
+Route::resource('location', LocationPointController::class);
+Route::resource('house_floor', HouseFloorController::class);
+Route::resource('house_type', HouseTypeController::class);
+Route::resource('master', MasterController::class);
