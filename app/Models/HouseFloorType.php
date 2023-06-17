@@ -18,4 +18,8 @@ class HouseFloorType extends Model
     {
         return $this->belongsTo(HouseFloor::class, 'house_floor_id');
     }
+    function house_floor_type_payments()
+    {
+        return $this->hasMany(HouseFloorTypePayment::class, 'house_floor_type_id');
+    }
 }

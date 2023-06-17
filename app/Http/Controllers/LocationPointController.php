@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class LocationPointController extends Controller
 {
+    public function getLocations()
+    {
+        try {
+            $data = LocationPoint::all();
+            return response()->json($data);
+        } catch (Exception $e) {
+            return response()->json($e->getMessage());
+        }
+    }
     public function index()
     {
         try {

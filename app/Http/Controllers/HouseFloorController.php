@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class HouseFloorController extends Controller
 {
+    public function getFloors($id)
+    {
+        try {
+            $data = HouseFloor::orderBy('floor_name', 'asc')->where('location_point_id', $id)->get();
+            return response()->json($data);
+        } catch (Exception $e) {
+            return response()->json($e->getMessage());
+        }
+    }
     public function index()
     {
         try {

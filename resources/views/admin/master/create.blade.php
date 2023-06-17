@@ -11,7 +11,7 @@
             <div class="col-md">
                 <div class="app-card app-card-settings shadow-sm p-4">
                     <div class="app-card-body">
-                        <form action="{{url('master')}}" method="POST">
+                        <form action="{{url('master')}}" method="POST" onsubmit="prepareBeforeSend()">
                             @csrf
                             <div class="mb-3">
                                 <label for="house_floor_id" class="form-label">Lantai Rumah</label>
@@ -35,7 +35,14 @@
                                 <label for="" class="form-label">Deskripsi</label>
                                 <textarea class="form-control" style="height: unset" rows="3" name="descriptions"></textarea>
                             </div>
-                            <button type="submit" class="btn app-btn-primary">Simpan</button>
+
+                            <div class="mb-3">
+                                <label for="" class="form-label">Skema Pembayaran</label>
+                                <textarea class="form-control mb-2" style="height: unset" rows="2" placeholder="Tuliskan keterangan cash disini" name="schema[cash]"></textarea>
+                                <textarea class="form-control mb-2" style="height: unset" rows="2" placeholder="Tuliskan keterangan tempo disini" name="schema[tempo]"></textarea>
+                                <textarea class="form-control mb-2" style="height: unset" rows="2" placeholder="Tuliskan keterangan kredit disini" name="schema[credit]"></textarea>
+                            </div>
+                            <button type=" submit" class="btn app-btn-primary">Simpan</button>
                         </form>
                     </div><!--//app-card-body-->
 
@@ -47,5 +54,4 @@
     </div><!--//row-->
 
 </div><!--//container-fluid-->
-
 @endsection

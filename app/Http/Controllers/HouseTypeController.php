@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HouseFloorType;
 use App\Models\HouseType;
 use Illuminate\Http\Request;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class HouseTypeController extends Controller
 {
+    public function getHouseTypesById($id)
+    {
+        try {
+            $data = HouseFloorType::with('house_types')->where('house_floor_id', $id)->get();
+            return response()->json($data);
+        } catch (Exception $e) {
+            return response()->json($e->getMessage());
+        }
+    }
     public function index()
     {
         try {

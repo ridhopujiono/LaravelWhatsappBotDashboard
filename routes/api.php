@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\HouseFloorController;
+use App\Http\Controllers\HouseTypeController;
+use App\Http\Controllers\LocationPointController;
+use App\Http\Controllers\MasterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/locations', [LocationPointController::class, 'getLocations']);
+Route::get('/floors/{id}', [HouseFloorController::class, 'getFloors']);
+Route::get('/house_types/{id}', [HouseTypeController::class, 'getHouseTypesById']);
+Route::get('/schemas_and_descriptions/{id}', [MasterController::class, 'getSchemasAndDescriptions']);

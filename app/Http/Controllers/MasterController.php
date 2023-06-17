@@ -4,12 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\HouseFloor;
 use App\Models\HouseFloorType;
+use App\Models\HouseFloorTypePayment;
 use App\Models\HouseType;
 use App\Models\LocationPoint;
 use Illuminate\Http\Request;
 
 class MasterController extends Controller
 {
+    public function getSchemasAndDescriptions($id)
+    {
+        try {
+            $data = HouseFloorType::where('id', $id)->with('house_floor_type_payments')->first();
+            return response()->json($data);
+        } catch (Exception $e) {
+            return response()->json($e->getMessage());
+        }
+    }
     public function index()
     {
         try {
@@ -18,6 +28,18 @@ class MasterController extends Controller
                 "title" => "Data Master",
                 "data" => $data,
                 "number" => 1
+            ]);
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+    public function show($id)
+    {
+        try {
+            $data = HouseFloorType::find($id);
+            return view('admin.master.detail', [
+                "title" => "Data Master",
+                "data" => $data
             ]);
         } catch (Exception $e) {
             dd($e->getMessage());
@@ -47,6 +69,22 @@ class MasterController extends Controller
                 "house_type_id" => $request->post('house_type_id'),
                 "descriptions" => $request->post('descriptions'),
             ]);
+            HouseFloorTypePayment::create([
+                "house_floor_type_id" => $store->id,
+                "descriptions" => $request->post('schema')['cash'],
+                "payment_type" => "cash"
+            ]);
+            HouseFloorTypePayment::create([
+                "house_floor_type_id" => $store->id,
+                "descriptions" => $request->post('schema')['tempo'],
+                "payment_type" => "tempo"
+            ]);
+            HouseFloorTypePayment::create([
+                "house_floor_type_id" => $store->id,
+                "descriptions" => $request->post('schema')['credit'],
+                "payment_type" => "credit"
+            ]);
+
             if ($store) {
                 return redirect('master/create')->with('success', 'Berhasil menambah lokasi');
             } else {
