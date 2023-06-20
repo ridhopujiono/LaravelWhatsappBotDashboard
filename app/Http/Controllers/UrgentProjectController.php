@@ -38,7 +38,7 @@ class UrgentProjectController extends Controller
     public function index()
     {
         try {
-            $data = UrgentProject::all();
+            $data = UrgentProject::orderBy('created_at', 'desc')->get();
             return view('admin.urgent_project.index', [
                 "title" => "Daftar Peminat",
                 "data" => $data,

@@ -30,7 +30,7 @@
                             @foreach($data as $d)
                             <tr>
                                 <td>{{$number++}}</td>
-                                <td><a href="https://wa.me/{{explode('@', '6288996825018@whatsapp.net')[0]}}" target="_blank">+{{explode('@', '6288996825018@whatsapp.net')[0]}}</a></td>
+                                <td><a href="https://wa.me/{{explode('@', $d->phone_number)[0]}}" target="_blank">+{{explode('@', $d->phone_number)[0]}}</a></td>
                                 <td>
                                     <div class="badge bg-{{ ($d->urgent_type == 'hot') ? 'danger' : (($d->urgent_type == 'warm') ? 'warning' : 'info') }}
                                     ">{{$d->urgent_type}}</div>
