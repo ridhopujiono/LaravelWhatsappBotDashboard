@@ -57,4 +57,17 @@ class NextProjectController extends Controller
             dd($e->getMessage());
         }
     }
+    public function destroy($id)
+    {
+        try {
+            $delete = NextProject::destroy($id);
+            if ($delete) {
+                return redirect('request_project')->with('success', 'Berhasil menghapus Usulan Proyek');
+            } else {
+                return redirect('request_project')->with('warning', 'Gagal menghapus Usulan Proyek');
+            }
+        } catch (Exception $e) {
+            return redirect('request_project')->with('error', 'Ada kesalahan sistem dalam menghapus Usulan Proyek. Error : ' . $e->getMessage());
+        }
+    }
 }
