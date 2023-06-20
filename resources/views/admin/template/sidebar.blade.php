@@ -1,5 +1,8 @@
 <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
     <ul class="app-menu list-unstyled accordion" id="menu-accordion">
+
+        <li class="nav-item fw-bold px-2 py-2 text-success" style="font-size: 15px;">Informasi Peminat dan Proyek</li>
+
         <li class="nav-item">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <a class="nav-link {{(stripos($title, 'Daftar Peminat') !== false) ? 'active': ''}}" href="{{url('interest')}}">
@@ -25,6 +28,7 @@
                 <span class="nav-link-text">Usulan Proyek</span>
             </a><!--//nav-link-->
         </li><!--//nav-item-->
+        <li class="nav-item fw-bold px-2 py-2 text-success" style="font-size: 15px;">Informasi Rumah</li>
         <li class="nav-item">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
             <a class="nav-link {{(stripos($title, 'Lokasi') !== false) ? 'active': ''}}" href="{{url('location')}}">

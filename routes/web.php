@@ -6,6 +6,7 @@ use App\Http\Controllers\LocationPointController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\NextProjectController;
 use App\Http\Controllers\UrgentProjectController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,9 +20,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('location', LocationPointController::class);
-Route::resource('house_floor', HouseFloorController::class);
-Route::resource('house_type', HouseTypeController::class);
-Route::resource('master', MasterController::class);
-Route::resource('interest', UrgentProjectController::class);
-Route::resource('request_project', NextProjectController::class);
+Route::get('/', function () {
+    return view('welcome');
+})->name('login');
+Route::get('/logout', [UserController::class, 'logout'],);
+Route::post('/auth', [UserController::class, 'authenticate'],);
+Route::resource('location', LocationPointController::class)->middleware('auth');
+Route::resource('house_floor', HouseFloorController::class)->middleware('auth');
+Route::resource('house_type', HouseTypeController::class)->middleware('auth');
+Route::resource('master', MasterController::class)->middleware('auth');
+Route::resource('interest', UrgentProjectController::class)->middleware('auth');
+Route::resource('request_project', NextProjectController::class)->middleware('auth');
