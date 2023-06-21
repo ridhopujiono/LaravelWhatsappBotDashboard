@@ -58,7 +58,7 @@ class HouseTypeController extends Controller
         try {
             $image_list = [];
             foreach ($request->file('image') as $image) {
-                array_push($image_list, Cloudinary::upload($image->getRealPath())->getPublicId());
+                array_push($image_list, "https://res.cloudinary.com/dfy3gxotz/image/upload/f_auto,q_auto/" . Cloudinary::upload($image->getRealPath())->getPublicId());
             }
 
             if ($image_list) {
