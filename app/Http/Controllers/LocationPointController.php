@@ -16,6 +16,15 @@ class LocationPointController extends Controller
             return response()->json($e->getMessage());
         }
     }
+    public function getLocationById($id)
+    {
+        try {
+            $data = LocationPoint::find($id);
+            return response()->json($data);
+        } catch (Exception $e) {
+            return response()->json($e->getMessage());
+        }
+    }
     public function index()
     {
         try {

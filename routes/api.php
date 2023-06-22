@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/locations', [LocationPointController::class, 'getLocations']);
+Route::get('/locations/{id}', [LocationPointController::class, 'getLocationById']);
 Route::get('/floors/{id}', [HouseFloorController::class, 'getFloors']);
 Route::get('/house_types/{id}', [HouseTypeController::class, 'getHouseTypesById']);
 Route::get('/schemas_and_descriptions/{id}', [MasterController::class, 'getSchemasAndDescriptions']);
