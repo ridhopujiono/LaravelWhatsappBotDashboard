@@ -86,14 +86,56 @@ class MasterController extends Controller
             ]);
 
             if ($store) {
-                return redirect('master/create')->with('success', 'Berhasil menambah lokasi');
+                return redirect('master/create')->with('success', 'Berhasil menambah data master');
             } else {
-                return redirect('master/create')->with('warning', 'Gagal menambah lokasi');
+                return redirect('master/create')->with('warning', 'Gagal menambah data master');
             }
         } catch (Exception $e) {
-            return redirect('master/create')->with('error', 'Ada kesalahan sistem dalam menambah lokasi. Error : ' . $e->getMessage());
+            return redirect('master/create')->with('error', 'Ada kesalahan sistem dalam menambah data master. Error : ' . $e->getMessage());
         }
     }
+
+    public function edit($id)
+    {
+        try {
+            $data = HouseFloorType::find($id);
+            return view('admin.master.edit', [
+                "title" => "Data Master",
+                "data" => $data
+            ]);
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $data = HouseFloorType::find($id);
+            $data->house_floor_type_payments->where('payment_type', 'cash')[0]->update([
+                'descriptions' => $request->post('schema')['cash']
+            ]);
+            $data->house_floor_type_payments->where('payment_type', 'tempo')[1]->update([
+                'descriptions' => $request->post('schema')['tempo']
+            ]);
+            $data->house_floor_type_payments->where('payment_type', 'credit')[2]->update([
+                'descriptions' => $request->post('schema')['credit']
+            ]);
+
+            $data->update([
+                'descriptions' => $request->post('descriptions')
+            ]);
+
+            if ($data) {
+                return redirect('master/' . $id . '/edit')->with('success', 'Berhasil edit data master');
+            } else {
+                return redirect('master/' . $id . '/edit')->with('warning', 'Gagal edit data master');
+            }
+        } catch (Exception $e) {
+            return redirect('master/' . $id . '/edit')->with('error', 'Ada kesalahan sistem dalam edit data master. Error : ' . $e->getMessage());
+        }
+    }
+
     public function destroy($id)
     {
         try {
