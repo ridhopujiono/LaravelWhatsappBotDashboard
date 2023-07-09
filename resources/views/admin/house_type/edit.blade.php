@@ -9,14 +9,14 @@
             @include('admin.template.alert')
             <div class="app-card app-card-settings shadow-sm p-4">
                 <div class="app-card-body">
-                    <form action="{{url('location')}}/{{$data->id}}" method="POST">
+                    <form action="{{url('house_type')}}/{{$data->id}}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
-                            <label for="" class="form-label">Nama Lokasi</label>
-                            <input type="text" class="form-control" name="location_name" value="{{$data->location_name}}">
+                            <label for="" class="form-label">Nama Tipe Rumah</label>
+                            <input type="text" class="form-control" name="house_type_name" value="{{$data->house_type_name}}">
                         </div>
-                        <a href="{{url('location')}}" class="btn app-btn-secondary">Kembali</a>
+                        <a href="{{url('house_type')}}" class="btn app-btn-secondary">Kembali</a>
                         <button class="btn bg-success text-white" type="submit">Simpan</button>
                     </form>
                 </div><!--//app-card-body-->

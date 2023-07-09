@@ -37,6 +37,7 @@
                                 <td>{{$d->floor_name}}</td>
                                 <td>
                                     <div class="d-flex gap-2">
+                                        <a href="{{url('house_floor/'.$d->id.'/edit')}}" class="badge bg-success" style="border: unset">edit</a>
                                         <form action="{{ url('house_floor/'.$d->id) }}" method="POST" id="delete-form">
                                             @csrf
                                             @method('DELETE')

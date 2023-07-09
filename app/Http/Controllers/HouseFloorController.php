@@ -32,6 +32,39 @@ class HouseFloorController extends Controller
             dd($e->getMessage());
         }
     }
+    public function edit($id)
+    {
+        try {
+            $data = HouseFloor::find($id);
+            $location_points = LocationPoint::all();
+            return view('admin.house_floor.edit', [
+                "title" => "Data Lantai Rumah",
+                "data" => $data,
+                "location_points" => $location_points
+            ]);
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+    public function update(Request $request, $id)
+    {
+        try {
+            $data = HouseFloor::find($id);
+
+            $data->update([
+                'location_point_id' => $request->post('location_point_id'),
+                'floor_name' => $request->post('floor_name')
+            ]);
+
+            if ($data) {
+                return redirect('house_floor/' . $id . '/edit')->with('success', 'Berhasil edit data lantai');
+            } else {
+                return redirect('house_floor/' . $id . '/edit')->with('warning', 'Gagal edit data lantai');
+            }
+        } catch (Exception $e) {
+            return redirect('house_floor/' . $id . '/edit')->with('error', 'Ada kesalahan sistem dalam edit data lantai. Error : ' . $e->getMessage());
+        }
+    }
     public function create()
     {
         try {

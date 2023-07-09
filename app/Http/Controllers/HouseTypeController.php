@@ -31,6 +31,36 @@ class HouseTypeController extends Controller
             dd($e->getMessage());
         }
     }
+    public function edit($id)
+    {
+        try {
+            $data = HouseType::find($id);
+            return view('admin.house_type.edit', [
+                "title" => "Data Tipe Rumah",
+                "data" => $data
+            ]);
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+    public function update(Request $request, $id)
+    {
+        try {
+            $data = HouseType::find($id);
+
+            $data->update([
+                'house_type_name' => $request->post('house_type_name')
+            ]);
+
+            if ($data) {
+                return redirect('house_type/' . $id . '/edit')->with('success', 'Berhasil edit data tipe rumah');
+            } else {
+                return redirect('house_type/' . $id . '/edit')->with('warning', 'Gagal edit data tipe rumah');
+            }
+        } catch (Exception $e) {
+            return redirect('house_type/' . $id . '/edit')->with('error', 'Ada kesalahan sistem dalam edit data tipe rumah. Error : ' . $e->getMessage());
+        }
+    }
     public function show($id)
     {
         try {
