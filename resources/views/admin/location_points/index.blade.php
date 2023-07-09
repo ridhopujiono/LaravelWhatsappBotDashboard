@@ -34,11 +34,14 @@
                                 <td>{{$number++}}</td>
                                 <td>{{$d->location_name}}</td>
                                 <td>
-                                    <form action="{{ url('location/'.$d->id) }}" method="POST" id="delete-form">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="badge bg-danger" style="border: unset" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">hapus</button>
-                                    </form>
+                                    <div class="d-flex gap-2">
+                                        <a href="{{url('location/'.$d->id.'/edit')}}" class="badge bg-success" style="border: unset">edit</a>
+                                        <form action="{{ url('location/'.$d->id) }}" method="POST" id="delete-form">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="badge bg-danger" style="border: unset" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">hapus</button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach

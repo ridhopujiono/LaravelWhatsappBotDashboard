@@ -38,6 +38,36 @@ class LocationPointController extends Controller
             dd($e->getMessage());
         }
     }
+    public function edit($id)
+    {
+        try {
+            $data = LocationPoint::find($id);
+            return view('admin.location_points.edit', [
+                "title" => "Data Lokasi",
+                "data" => $data
+            ]);
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+    public function update(Request $request, $id)
+    {
+        try {
+            $data = LocationPoint::find($id);
+
+            $data->update([
+                'location_name' => $request->post('location_name')
+            ]);
+
+            if ($data) {
+                return redirect('location/' . $id . '/edit')->with('success', 'Berhasil edit data lokasi');
+            } else {
+                return redirect('location/' . $id . '/edit')->with('warning', 'Gagal edit data lokasi');
+            }
+        } catch (Exception $e) {
+            return redirect('location/' . $id . '/edit')->with('error', 'Ada kesalahan sistem dalam edit data lokasi. Error : ' . $e->getMessage());
+        }
+    }
     public function create()
     {
         try {
