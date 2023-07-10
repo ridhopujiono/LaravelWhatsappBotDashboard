@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomMenuController;
 use App\Http\Controllers\HouseFloorController;
 use App\Http\Controllers\HouseTypeController;
 use App\Http\Controllers\LocationPointController;
@@ -31,3 +32,4 @@ Route::resource('house_type', HouseTypeController::class)->middleware('auth');
 Route::resource('master', MasterController::class)->middleware('auth');
 Route::resource('interest', UrgentProjectController::class)->middleware('auth');
 Route::resource('request_project', NextProjectController::class)->middleware('auth');
+Route::resource('custom_menu', CustomMenuController::class)->middleware('auth');

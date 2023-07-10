@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomMenuController;
 use App\Http\Controllers\HouseFloorController;
 use App\Http\Controllers\HouseTypeController;
 use App\Http\Controllers\LocationPointController;
@@ -24,5 +25,7 @@ Route::get('/locations/{id}', [LocationPointController::class, 'getLocationById'
 Route::get('/floors/{id}', [HouseFloorController::class, 'getFloors']);
 Route::get('/house_types/{id}', [HouseTypeController::class, 'getHouseTypesById']);
 Route::get('/schemas_and_descriptions/{id}', [MasterController::class, 'getSchemasAndDescriptions']);
+Route::get('/custom_menu', [CustomMenuController::class, 'getMenus']);
+Route::get('/custom_menu/{id}', [CustomMenuController::class, 'getMenuById']);
 Route::post('/urgent_project/{id}', [UrgentProjectController::class, 'storeUrgentProject']);
 Route::post('/next_project', [NextProjectController::class, 'storeNextProject']);
