@@ -12,7 +12,7 @@ class CustomMenuController extends Controller
     public function getMenus()
     {
         try {
-            $data = CustomMenu::select('name')->get();
+            $data = CustomMenu::select('id', 'name')->get();
             return response()->json($data);
         } catch (Exception $e) {
             return response()->json($e->getMessage());
